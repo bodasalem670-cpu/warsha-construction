@@ -4,44 +4,406 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ورشة لمقاولات البناء | Warsha Construction L.L.C</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        constructionYellow: '#FFD700',
+                        darkBg: '#121212',
+                        cardBg: '#1E1E1E',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #121212; color: #f3f4f6; }
+        .transition-custom { transition: all 0.3s ease-in-out; }
     </style>
 </head>
 <body class="bg-darkBg text-gray-100">
-    <header class="fixed top-0 left-0 w-full z-50 bg-black/90 border-b border-yellow-500/30">
-        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+
+    <!-- 📱 Header & Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-yellow-500/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
             <a href="#home" class="flex items-center gap-3">
-                <div class="bg-yellow-400 text-black font-black px-3 py-1 rounded text-xl">W</div>
+                <div class="bg-constructionYellow text-black font-black px-3 py-1 rounded text-xl">W</div>
                 <div>
-                    <span class="text-yellow-400 font-bold text-lg block leading-tight">ورشة</span>
-                    <span class="text-xs text-gray-400">WARSHA CONSTRUCTION</span>
+                    <span class="text-constructionYellow font-bold text-lg block leading-tight">ورشة</span>
+                    <span class="text-xs tracking-widest text-gray-400">WARSHA CONSTRUCTION</span>
                 </div>
             </a>
+
+            <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center gap-8 font-semibold">
-                <a href="#home" class="hover:text-yellow-400">الرئيسية</a>
-                <a href="#about" class="hover:text-yellow-400">من نحن</a>
-                <a href="#services" class="hover:text-yellow-400">خدماتنا</a>
-                <a href="#projects" class="hover:text-yellow-400">مشاريعنا</a>
-                <a href="#team" class="hover:text-yellow-400">فريق العمل</a>
-                <a href="#contact" class="bg-yellow-400 text-black px-4 py-2 rounded-lg font-bold">اتصل بنا</a>
+                <a href="#home" class="hover:text-constructionYellow transition-custom">الرئيسية</a>
+                <a href="#about" class="hover:text-constructionYellow transition-custom">من نحن</a>
+                <a href="#services" class="hover:text-constructionYellow transition-custom">خدماتنا</a>
+                <a href="#projects" class="hover:text-constructionYellow transition-custom">مشاريعنا</a>
+                <a href="#team" class="hover:text-constructionYellow transition-custom">فريق العمل</a>
+                <a href="#partners" class="hover:text-constructionYellow transition-custom">شركاؤنا</a>
+                <a href="#contact" class="bg-constructionYellow text-black px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 transition-custom">اتصل بنا</a>
             </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-constructionYellow text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-b border-yellow-500/30 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="block hover:text-constructionYellow py-2">الرئيسية</a>
+            <a href="#about" class="block hover:text-constructionYellow py-2">من نحن</a>
+            <a href="#services" class="block hover:text-constructionYellow py-2">خدماتنا</a>
+            <a href="#projects" class="block hover:text-constructionYellow py-2">مشاريعنا</a>
+            <a href="#team" class="block hover:text-constructionYellow py-2">فريق العمل</a>
+            <a href="#partners" class="block hover:text-constructionYellow py-2">شركاؤنا</a>
+            <a href="#contact" class="block bg-constructionYellow text-black text-center py-2 rounded font-bold">اتصل بنا</a>
         </div>
     </header>
 
-    <section id="home" class="pt-40 pb-20 bg-gradient-to-b from-black to-[#121212] text-center">
-        <div class="max-w-4xl mx-auto px-4 space-y-6">
-            <span class="bg-yellow-400/10 text-yellow-400 border border-yellow-400/30 px-4 py-1.5 rounded-full text-sm font-semibold">شركة رائدة في مقاولات البناء دبي، الإمارات</span>
-            <h1 class="text-4xl md:text-6xl font-black">نحول أفكارك الهندسية إلى <span class="text-yellow-400">واقع ملموس</span></h1>
-            <p class="text-gray-400 text-lg">نقدم حلولاً مبتكرة وشاملة في كافة جوانب عملية البناء بأعلى معايير الجودة والاستدامة.</p>
+    <!-- 🏗️ Home Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-48 md:pb-32 bg-gradient-to-b from-black to-darkBg relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="bg-constructionYellow/10 text-constructionYellow border border-constructionYellow/30 px-4 py-1.5 rounded-full text-sm font-semibold">شركة رائدة في مقاولات البناء دبي، الإمارات</span>
+                <h1 class="text-4xl md:text-6xl font-black leading-tight">نحول أفكارك الهندسية إلى <span class="text-constructionYellow">واقع ملموس</span></h1>
+                <p class="text-gray-400 text-lg">نقدم حلولاً مبتكرة وشاملة في كافة جوانب عملية البناء بأعلى معايير الجودة والاستدامة والدقة الزمنية.</p>
+                <div class="flex gap-4 pt-4">
+                    <a href="#projects" class="bg-constructionYellow text-black font-bold px-8 py-3 rounded-lg hover:bg-yellow-400 transition-custom shadow-lg shadow-yellow-500/20">استكشف مشاريعنا</a>
+                    <a href="#contact" class="border border-constructionYellow text-constructionYellow px-8 py-3 rounded-lg font-bold hover:bg-constructionYellow hover:text-black transition-custom">تواصل معنا</a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -inset-1 bg-constructionYellow rounded-2xl blur-lg opacity-20"></div>
+                <div class="relative bg-cardBg border border-gray-800 p-4 rounded-2xl shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d0fbb18f724d?auto=format&fit=crop&w=800&q=80" alt="Construction" class="rounded-xl w-full h-[350px] object-cover">
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- 🏢 About Us Section -->
+    <section id="about" class="py-20 bg-cardBg/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl md:text-4xl font-black">من نحن (<span class="text-constructionYellow">WHO WE ARE</span>)</h2>
+                <div class="w-20 h-1 bg-constructionYellow mx-auto rounded"></div>
+                <p class="text-gray-400">تعتبر ورشة من شركات المقاولات الرائدة في دبي، الإمارات العربية المتحدة</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-gray-300 leading-relaxed">
+                        مع خبرة واسعة في قطاع البناء، نحن مستعدون للتعامل مع جميع أنواع المشاريع المعقدة والسريعة لصالح عملائنا. وسواء بالشراكة مع مقاولين عامين آخرين أو كـ مقاول رئيسي، تمتلك شركة <strong>WARSHA Construction</strong> المعرفة والخبرة لتقديم أحدث النهج للمشاريع الصعبة.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        نحن معترفون بجودتنا العالية وتطوراتنا المستدامة. نستخدم أحدث الأدوات التقنية لإدارة سير العمل وتسهيل العمليات التي تتيح لنا تقديم تحديثات فورية، تقليل الهدر، والتكيف مع التغييرات على الفور.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="border-r-4 border-constructionYellow pr-4">
+                            <h3 class="text-2xl font-bold text-constructionYellow">دبي، الإمارات</h3>
+                            <p class="text-sm text-gray-400">المقر الرئيسي</p>
+                        </div>
+                        <div class="border-r-4 border-constructionYellow pr-4">
+                            <h3 class="text-2xl font-bold text-constructionYellow">احترافية عالية</h3>
+                            <p class="text-sm text-gray-400">التزام بالمواعيد والميزانية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-cardBg border border-gray-800 p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -right-4 bg-constructionYellow text-black font-bold p-4 rounded-xl shadow-lg">
+                        <i class="fas fa-hard-hat text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-constructionYellow">رؤيتنا وهدفنا</h3>
+                    <p class="text-gray-400 mb-6">دمج الجدولة والتحكم في التكاليف في الأنشطة اليومية للحفاظ على المشاريع في موعدها وفي حدود الميزانية.</p>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><i class="fas fa-check text-constructionYellow ml-2"></i> حلول بناء مبتكرة ومتكاملة</li>
+                        <li><i class="fas fa-check text-constructionYellow ml-2"></i> استخدام تكنولوجيا إدارة المشاريع الحديثة</li>
+                        <li><i class="fas fa-check text-constructionYellow ml-2"></i> التزام تام بمعايير الأمن والسلامة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🛠️ Services Section -->
+    <section id="services" class="py-20 bg-darkBg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl md:text-4xl font-black">خدماتنا الاحترافية (<span class="text-constructionYellow">SERVICES</span>)</h2>
+                <div class="w-20 h-1 bg-constructionYellow mx-auto rounded"></div>
+                <p class="text-gray-400">نقدم باقة متكاملة من خدمات التشييد والمقاولات بأعلى معايير الكفاءة</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-constructionYellow transition-custom group">
+                    <div class="w-14 h-14 bg-constructionYellow/10 text-constructionYellow rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-constructionYellow group-hover:text-black transition-custom">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">مقاولات البناء (Construction)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">نوفر خدمات البناء التي تدمج جدولة المشاريع والتحكم بالتكاليف في الأنشطة اليومية لضمان التسليم في الموعد والميزانية.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-constructionYellow transition-custom group">
+                    <div class="w-14 h-14 bg-constructionYellow/10 text-constructionYellow rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-constructionYellow group-hover:text-black transition-custom">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">تعديل المنازل (Home Modification)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">نطور خططاً وتصميمات بسيطة وفعالة لإحداث التعديلات المطلوبة في تصميم هيكل منزلك الحالي.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-constructionYellow transition-custom group">
+                    <div class="w-14 h-14 bg-constructionYellow/10 text-constructionYellow rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-constructionYellow group-hover:text-black transition-custom">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">خدمات التشطيب (Fit Out Services)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">نصمم وننفذ تشطيبات تجارية وخاصة استثنائية وفعالة من حيث التكلفة تنبض بالأسلوب والإبداع.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-constructionYellow transition-custom group">
+                    <div class="w-14 h-14 bg-constructionYellow/10 text-constructionYellow rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-constructionYellow group-hover:text-black transition-custom">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">تنسيق الحدائق (Landscape)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">نقدم مجموعة كاملة من الخدمات عالية الجودة لإنشاء مناظر طبيعية مستدامة بيئياً وصديقة للميزانية.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-constructionYellow transition-custom group">
+                    <div class="w-14 h-14 bg-constructionYellow/10 text-constructionYellow rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-constructionYellow group-hover:text-black transition-custom">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">إنشاء المسابح (Pool Construction)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">نقدم نطاقاً كاملاً من خدمات بناء المسابح تشمل الإنشاء الجديد، التجديدات، وتحديث المعدات.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 hover:border-constructionYellow transition-custom group">
+                    <div class="w-14 h-14 bg-constructionYellow/10 text-constructionYellow rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-constructionYellow group-hover:text-black transition-custom">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">الإنشاءات المعدنية (Steel Construction)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">تشييد الهانجارات والهياكل المعدنية والمستودعات الصناعية وفق أعلى معايير الهندسة المدنية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🏗️ Projects Section -->
+    <section id="projects" class="py-20 bg-cardBg/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl md:text-4xl font-black">مشاريعنا المميزة (<span class="text-constructionYellow">PROJECTS</span>)</h2>
+                <div class="w-20 h-1 bg-constructionYellow mx-auto rounded"></div>
+                <p class="text-gray-400">نماذج من أعمالنا ومشاريعنا المنجزة في دبي وأبوظبي والإمارات</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-darkBg border border-gray-800 rounded-2xl overflow-hidden group hover:border-constructionYellow transition-custom">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" alt="Villa" class="w-full h-full object-cover group-hover:scale-110 transition-custom">
+                        <span class="absolute top-3 right-3 bg-constructionYellow text-black text-xs font-bold px-3 py-1 rounded">دبي</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-lg font-bold">فيلا خاصة (G+2+Roof)</h3>
+                        <p class="text-sm text-gray-400"><i class="fas fa-map-marker-alt text-constructionYellow ml-2"></i>هور العنز، دبي</p>
+                        <p class="text-xs text-gray-500">الاستشاري: المشكاة للاستشارات الهندسية</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-darkBg border border-gray-800 rounded-2xl overflow-hidden group hover:border-constructionYellow transition-custom">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Building" class="w-full h-full object-cover group-hover:scale-110 transition-custom">
+                        <span class="absolute top-3 right-3 bg-constructionYellow text-black text-xs font-bold px-3 py-1 rounded">دبي</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-lg font-bold">مبنى تجاري وسكني (G+3+Roof)</h3>
+                        <p class="text-sm text-gray-400"><i class="fas fa-map-marker-alt text-constructionYellow ml-2"></i>الكرامة، دبي</p>
+                        <p class="text-xs text-gray-500">الاستشاري: مركز التصميمات الهندسية</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-darkBg border border-gray-800 rounded-2xl overflow-hidden group hover:border-constructionYellow transition-custom">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=600&q=80" alt="Factory" class="w-full h-full object-cover group-hover:scale-110 transition-custom">
+                        <span class="absolute top-3 right-3 bg-constructionYellow text-black text-xs font-bold px-3 py-1 rounded">جبل علي</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-lg font-bold">مستودعات وهناجار (16 Hangers)</h3>
+                        <p class="text-sm text-gray-400"><i class="fas fa-map-marker-alt text-constructionYellow ml-2"></i>جبل علي، دبي</p>
+                        <p class="text-xs text-gray-500">تصميم وتشييد معدني متكامل</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 👷 Team Section -->
+    <section id="team" class="py-20 bg-darkBg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl md:text-4xl font-black">فريق العمل الهندسـي (<span class="text-constructionYellow">THE STAFF</span>)</h2>
+                <div class="w-20 h-1 bg-constructionYellow mx-auto rounded"></div>
+                <p class="text-gray-400">نخبة من المهندسين والخبراء المشرفين على جودة التنفيذ</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-cardBg border border-gray-800 rounded-xl p-6 text-center space-y-3 hover:border-constructionYellow transition-custom">
+                    <div class="w-24 h-24 bg-constructionYellow/10 rounded-full mx-auto flex items-center justify-center text-constructionYellow text-3xl font-bold border-2 border-constructionYellow/30">م.ج</div>
+                    <h3 class="font-bold text-lg">م. محمود الجوهري</h3>
+                    <p class="text-constructionYellow text-sm font-semibold">المدير العام</p>
+                </div>
+                <div class="bg-cardBg border border-gray-800 rounded-xl p-6 text-center space-y-3 hover:border-constructionYellow transition-custom">
+                    <div class="w-24 h-24 bg-constructionYellow/10 rounded-full mx-auto flex items-center justify-center text-constructionYellow text-3xl font-bold border-2 border-constructionYellow/30">ن.س</div>
+                    <h3 class="font-bold text-lg">م. نبيل صابر</h3>
+                    <p class="text-constructionYellow text-sm font-semibold">إدارة المشاريع</p>
+                </div>
+                <div class="bg-cardBg border border-gray-800 rounded-xl p-6 text-center space-y-3 hover:border-constructionYellow transition-custom">
+                    <div class="w-24 h-24 bg-constructionYellow/10 rounded-full mx-auto flex items-center justify-center text-constructionYellow text-3xl font-bold border-2 border-constructionYellow/30">أ.ش</div>
+                    <h3 class="font-bold text-lg">م. أحمد شعبان</h3>
+                    <p class="text-constructionYellow text-sm font-semibold">مدير التنفيذ</p>
+                </div>
+                <div class="bg-cardBg border border-gray-800 rounded-xl p-6 text-center space-y-3 hover:border-constructionYellow transition-custom">
+                    <div class="w-24 h-24 bg-constructionYellow/10 rounded-full mx-auto flex items-center justify-center text-constructionYellow text-3xl font-bold border-2 border-constructionYellow/30">أ.ح</div>
+                    <h3 class="font-bold text-lg">م. أسامة حسين</h3>
+                    <p class="text-constructionYellow text-sm font-semibold">المكتب الفني</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🤝 Partners Section -->
+    <section id="partners" class="py-20 bg-cardBg/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl md:text-4xl font-black">شركاء النجاح (<span class="text-constructionYellow">PARTNERS</span>)</h2>
+                <div class="w-20 h-1 bg-constructionYellow mx-auto rounded"></div>
+                <p class="text-gray-400">نعتز بالتعاون مع أفضل الشركات المتخصصة والمقاولين الفرعيين لضمان أعلى معايير الجودة</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-darkBg border border-gray-800 p-4 rounded-xl flex items-center gap-4">
+                    <i class="fas fa-handshake text-constructionYellow text-xl"></i>
+                    <div>
+                        <h4 class="font-bold text-sm">محمد محروس للخدمات الفنية</h4>
+                        <p class="text-xs text-gray-400">أعمال الشدات والحديد المسلح</p>
+                    </div>
+                </div>
+                <div class="bg-darkBg border border-gray-800 p-4 rounded-xl flex items-center gap-4">
+                    <i class="fas fa-handshake text-constructionYellow text-xl"></i>
+                    <div>
+                        <h4 class="font-bold text-sm">شركة المصاعد العربية</h4>
+                        <p class="text-xs text-gray-400">أعمال التركيبات والمصاعد</p>
+                    </div>
+                </div>
+                <div class="bg-darkBg border border-gray-800 p-4 rounded-xl flex items-center gap-4">
+                    <i class="fas fa-handshake text-constructionYellow text-xl"></i>
+                    <div>
+                        <h4 class="font-bold text-sm">الريان الذهبي للأعمال الفنية</h4>
+                        <p class="text-xs text-gray-400">أعمال التكييف والتبريد (HVAC)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📞 Contact Section -->
+    <section id="contact" class="py-20 bg-darkBg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl md:text-4xl font-black">تواصل معنا (<span class="text-constructionYellow">CONTACT</span>)</h2>
+                <div class="w-20 h-1 bg-constructionYellow mx-auto rounded"></div>
+                <p class="text-gray-400">يسعدنا تواصلكم معنا واستفساراتكم حول مشاريعكم القادمة</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-constructionYellow/10 text-constructionYellow rounded-lg flex items-center justify-center text-xl shrink-0">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">العنوان</h3>
+                            <p class="text-gray-400 text-sm">دبي، أبو هيل، ديرة - مبنى دار الوحيدة، مكتب 216</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-constructionYellow/10 text-constructionYellow rounded-lg flex items-center justify-center text-xl shrink-0">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">أرقام التواصل</h3>
+                            <p class="text-gray-400 text-sm" dir="ltr">+971 50 424 5828</p>
+                            <p class="text-gray-400 text-sm" dir="ltr">+971 4 354 4211</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-constructionYellow/10 text-constructionYellow rounded-lg flex items-center justify-center text-xl shrink-0">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">البريد الإلكتروني</h3>
+                            <p class="text-gray-400 text-sm">info.warsha70@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-cardBg border border-gray-800 p-8 rounded-2xl">
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('تم إرسال رسالتك بنجاح، سنتواصل معك قريباً!');">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">الاسم الكامل</label>
+                            <input type="text" required class="w-full bg-darkBg border border-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:border-constructionYellow">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">البريد الإلكتروني</label>
+                            <input type="email" required class="w-full bg-darkBg border border-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:border-constructionYellow">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">الرسالة أو الاستفسار</label>
+                            <textarea rows="4" class="w-full bg-darkBg border border-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:border-constructionYellow" placeholder="اكتب تفاصيل مشروعك..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-constructionYellow text-black font-bold py-3 rounded-lg hover:bg-yellow-400 transition-custom">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="bg-black border-t border-gray-800 py-8 text-center text-sm text-gray-500">
         <p>جميع الحقوق محفوظة © 2026 شركة ورشة لمقاولات البناء (Warsha Construction L.L.C)</p>
     </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
